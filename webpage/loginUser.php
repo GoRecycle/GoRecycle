@@ -22,7 +22,7 @@ if (empty($_SESSION['userName'])) {
 
 
   <body>
-   
+
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -38,7 +38,7 @@ if (empty($_SESSION['userName'])) {
                     <font color="white">Login | User</font>
                 </li>
             </ul>
-            
+
         </div>
     </nav>
     <div id="login">
@@ -65,9 +65,10 @@ if (empty($_SESSION['userName'])) {
 								<div class="form-group">
                                   <label for="type">Type:</label>
                                   <select name="type" class="form-control selectpicker">
-									<option value="collector">Collector</option>
-									<option value="recycler">Recycler</option>
-								  </select>
+                                    	 <option value=''></option>
+									                     <option value="collector">Collector</option>
+									                     <option value="recycler">Recycler</option>
+								                  </select>
                                   <div class="valid-feedback">⠀</div>
                                   <div class="invalid-feedback">Please fill out this field.</div>
                                 </div>

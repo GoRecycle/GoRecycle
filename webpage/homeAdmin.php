@@ -37,7 +37,7 @@
         </div><!--/.nav-collapse -->
       </div>
     </nav>
-//changes1
+
     <header id="header">
       <div class="container">
         <div class="row">

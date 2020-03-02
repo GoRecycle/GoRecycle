@@ -41,7 +41,7 @@ if (empty($_SESSION['userName'])) {
                             <font color="white">Create an Account for User</font>
                         </li>
                     </ul>
-                    
+
                 </div>
             </nav>
 
@@ -81,6 +81,7 @@ if (empty($_SESSION['userName'])) {
 											<div class="form-group row">
 												<label for="type">Type:</label>
 												<select name="type" class="form-control selectpicker">
+                          <option value=''></option>
 													<option value="collector">Collector</option>
 													<option value="recycler">Recycler</option>
 													</select>
@@ -103,7 +104,7 @@ if (empty($_SESSION['userName'])) {
                 </div>
             </div>
         </div>
-     
+
 
 <!-- Modal -->
 <div id="myModal" class="modal fade" role="dialog">
