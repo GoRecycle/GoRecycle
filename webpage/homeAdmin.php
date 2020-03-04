@@ -1,3 +1,11 @@
+<?php
+session_start();
+include '../php/dbConnection.php';
+
+if (empty($_SESSION['add'])) {
+	$_SESSION['add'] = "empty";
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -5,7 +13,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Admin Area | Dashboard</title>
-	<link rel="icon" href="img/headLog.jpg">
+	  <link rel="icon" href="img/headLog.jpg">
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <!--<link href="css/homeAdmin.css" rel="stylesheet">-->
@@ -26,8 +34,8 @@
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="index.html">Dashboard</a></li>
-            <li><a href="#">Materials</a></li>
+            <li class="active"><a href="homeAdmin.php">Dashboard</a></li>
+            <li><a href="material.php">Materials</a></li>
             <li><a href="#">Users</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
@@ -157,56 +165,26 @@
     </section>
 
     <footer id="footer">
-      <p>Copyright AdminStrap, &copy; 2017</p>
+      <div class="container">
+        <div class="row">
+          <div style="padding-left:45%">
+            <p>Copyright EcoSave, &copy; 2020</p>
+          </div>
+        </div>
+      </div>
     </footer>
 
-    <!-- Modals -->
 
-    <!-- Add Page -->
-    <div class="modal fade" id="addPage" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <form>
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Add Page</h4>
-      </div>
-      <div class="modal-body">
-        <div class="form-group">
-          <label>Page Title</label>
-          <input type="text" class="form-control" placeholder="Page Title">
-        </div>
-        <div class="form-group">
-          <label>Page Body</label>
-          <textarea name="editor1" class="form-control" placeholder="Page Body"></textarea>
-        </div>
-        <div class="checkbox">
-          <label>
-            <input type="checkbox"> Published
-          </label>
-        </div>
-        <div class="form-group">
-          <label>Meta Tags</label>
-          <input type="text" class="form-control" placeholder="Add Some Tags...">
-        </div>
-        <div class="form-group">
-          <label>Meta Description</label>
-          <input type="text" class="form-control" placeholder="Add Meta Description...">
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary">Save changes</button>
-      </div>
-    </form>
-    </div>
-  </div>
-</div>
-
-  <script>
-     CKEDITOR.replace( 'editor1' );
- </script>
-
+    <?php
+/*
+prompt the user if they failed to sign up
+*/
+if($_SESSION['add'] == "failed") {
+  echo
+  "<script>alert('This Id has been taken!')</script>";
+  unset($_SESSION['add']);
+}
+?>
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
