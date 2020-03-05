@@ -45,17 +45,21 @@ CREATE TABLE IF NOT EXISTS `material` (
 -- Table structure for table `submission`
 --
 
-CREATE TABLE IF NOT EXISTS `submission` (
-  `submissionID` int(11) NOT NULL AUTO_INCREMENT,
-  `proposedDate` date NOT NULL,
-  `actualDate` date NOT NULL,
-  `weightInKg` int(11) NOT NULL,
-  `pointsAwarded` int(11) NOT NULL,
-  `status` varchar(10) NOT NULL,
-  `materialID` int(11) NOT NULL,
-  `username` int(11) NOT NULL,
-  PRIMARY KEY (`submissionID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+CREATE TABLE SUBMISSION(
+  submissionID VARCHAR(10), 
+  proposedDate DATE NOT NULL, 
+  actualDate DATE, 
+  weightInKg INTEGER NOT NULL,
+  pointsAwarded INTEGER,
+  status VARCHAR(10),
+  materialID VARCHAR(10),
+  CollectorUname VARCHAR(10), 
+  RecyclerUname VARCHAR(10),
+  PRIMARY KEY (submissionID),
+  FOREIGN KEY (CollectorUname) REFERENCES COLLECTOR(username),
+  FOREIGN KEY (RecyclerUname) REFERENCES RECYCLER(username),
+  FOREIGN KEY (materialID) REFERENCES MATERIAL(materialID)
+)  ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
