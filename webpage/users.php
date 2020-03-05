@@ -14,10 +14,14 @@ if (empty($_SESSION['add'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Admin Area | Users</title>
 	  <link rel="icon" href="img/headLog.jpg">
-    <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <!--<link href="css/homeAdmin.css" rel="stylesheet">-->
-    <script src="http://cdn.ckeditor.com/4.6.1/standard/ckeditor.js"></script>
+		<!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <script>
     /**
       This function will let the table clickable
@@ -117,7 +121,9 @@ if (empty($_SESSION['add'])) {
     </script>
   </head>
   <body>
-
+		<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     <nav class="navbar navbar-default">
       <div class="container">
         <div class="navbar-header">
@@ -153,69 +159,17 @@ if (empty($_SESSION['add'])) {
       </div>
     </header>
 
-    <section id="breadcrumb">
-      <div class="container">
-        <ol class="breadcrumb">
-          <li class="active">Users</li>
-        </ol>
-      </div>
-    </section>
-
     <section id="main">
       <div class="container">
         <div class="row">
           <div class="col-md-12">
-            <!-- Website Overview -->
-            <div class="panel panel-default">
-              <div class="panel-heading main-color-bg">
-                <h3 class="panel-title">Website Overview</h3>
-              </div>
-              <div class="panel-body">
-                <div class="col-md-4">
-                  <div class="well dash-box">
-                    <h2><span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-											<?php
-												$query = "SELECT count(*) as total FROM user";
-												$result = mysqli_query($connection, $query);
-												$values = mysqli_fetch_assoc($result);
-												$num_rows = $values['total'];
-												echo $num_rows;
-												?>
-										</h2>
-                    <h4>Users</h4>
-                  </div>
-                </div>
-                <div class="col-md-4">
-                  <div class="well dash-box">
-                    <h2><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
-											<?php
-												$query = "SELECT count(*) as total FROM material";
-												$result = mysqli_query($connection, $query);
-												$values = mysqli_fetch_assoc($result);
-												$num_rows = $values['total'];
-												echo $num_rows;
-												?>
-										</h2>
-                    <h4>Materials</h4>
-                  </div>
-                </div>
-                <div class="col-md-4">
-                  <div class="well dash-box">
-                    <h2><span class="glyphicon glyphicon-stats" aria-hidden="true"></span> 12,334</h2>
-                    <h4>Visitors</h4>
-                  </div>
-                </div>
-              </div>
-              </div>
-
+						<!-- Input from Admin to search for Users -->
+						<input type="text" class = "form-control" id="myInput" onkeyup="myFunction(0)" placeholder="Search for User FullName..">
               <!-- Latest Users -->
               <div class="panel panel-default">
                 <div class="panel-heading">
                   <h3 class="panel-title">Users List</h3>
                 </div>
-                <!-- Input from Admin to search for Users -->
-                <input type="text" class = "form-control" id="myInput" onkeyup="myFunction(0)" placeholder="Search for User FullName..">
-                <div id = "myTable" class="panel-body">
                   <table class="table table-striped table-hover">
                       <tr>
                         <th>Full Name</th>
@@ -240,7 +194,6 @@ if (empty($_SESSION['add'])) {
   								                    }
   							        ?>
                     </table>
-                </div>
               </div>
           </div>
         </div>

@@ -1,25 +1,25 @@
 <?php
-session_start();
 include '../php/dbConnection.php';
-
-if (empty($_SESSION['add'])) {
-	$_SESSION['add'] = "empty";
-}
-
+include '../php/process.php'
 ?>
-<!DOCTYPE html>
+<!DOCTYPE Html>
 <html lang="en">
   <head>
-		<!-- Required meta tags -->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Admin Area | Materials</title>
-	  <link rel="icon" href="img/headLog.jpg">
-    <!-- Bootstrap core CSS -->
-		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"> 
-    <!--<link href="css/homeAdmin.css" rel="stylesheet">-->
 
-		<script>
+    <link rel="icon" href="img/headLog.jpg">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script>
     /**
       This function will let the table clickable
       whenever user click on the table row
@@ -116,9 +116,11 @@ if (empty($_SESSION['add'])) {
     }
 
     </script>
-  </head>
-  <body>
-
+</head>
+	<body>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     <nav class="navbar navbar-default">
       <div class="container">
         <div class="navbar-header">
@@ -133,7 +135,7 @@ if (empty($_SESSION['add'])) {
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
             <li><a href="homeAdmin.php">Dashboard</a></li>
-            <li class="active"><a href="material.php">Materials</a></li>
+            <li  class="active"><a href="material.php">Materials</a></li>
             <li><a href="users.php">Users</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
@@ -144,170 +146,109 @@ if (empty($_SESSION['add'])) {
       </div>
     </nav>
 
-    <header id="header">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-10">
-            <h1><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Materials <small>Manage Materials</small></h1>
-          </div>
+  <header id="header">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-10">
+          <h1><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Materials <small>Manage Your Materials</small></h1>
         </div>
       </div>
-    </header>
+    </div>
+  </header>
 
-    <section id="breadcrumb">
-      <div class="container">
-        <ol class="breadcrumb">
-          <li class="active">Materials</li>
-        </ol>
-      </div>
-    </section>
 
-    <section id="main">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
-            <!-- Website Overview -->
-            <div class="panel panel-default">
-              <div class="panel-heading main-color-bg">
-                <h3 class="panel-title">Website Overview</h3>
-              </div>
-              <div class="panel-body">
-                <div class="col-md-4">
-                  <div class="well dash-box">
-                    <h2><span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-											<?php
-												$query = "SELECT count(*) as total FROM user";
-												$result = mysqli_query($connection, $query);
-												$values = mysqli_fetch_assoc($result);
-												$num_rows = $values['total'];
-												echo $num_rows;
-												?>
-										</h2>
-                    <h4>Users</h4>
-                  </div>
-                </div>
-                <div class="col-md-4">
-                  <div class="well dash-box">
-                    <h2><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
-											<?php
-												$query = "SELECT count(*) as total FROM material";
-												$result = mysqli_query($connection, $query);
-												$values = mysqli_fetch_assoc($result);
-												$num_rows = $values['total'];
-												echo $num_rows;
-												?>
-										</h2>
-                    <h4>Materials</h4>
-                  </div>
-                </div>
-                <div class="col-md-4">
-                  <div class="well dash-box">
-                    <h2><span class="glyphicon glyphicon-stats" aria-hidden="true"></span> 12,334</h2>
-                    <h4>Visitors</h4>
-                  </div>
-                </div>
-              </div>
-              </div>
 
-              <!-- Latest Users -->
-              <div class="panel panel-default">
-                <div class="panel-heading">
-                  <h3 class="panel-title">Materials List</h3>
-                </div>
-								<!-- Input from Admin to search for Material -->
-								<input type="text" class = "form-control" id="myInput" onkeyup="myFunction(1)" placeholder="Search for Material Name..">
-								<div align="center">
-                  <button type="button" name="add" id="add" data-toggle="modal" data-target="#add_data_Modal" class="btn btn-warning">Add</button>
-                </div>
-                <div id = "myTable" class="panel-body">
-                  <table class=" table table-striped table-hover">
-                      <tr>
-                        <th>ID</th>
-                        <th>Name</th>
-                        <th>Edit</th>
-                        <th>View</th>
-                      </tr>
-                          <?php
-													$query = "SELECT * FROM material ORDER BY materialName";
-													$result = mysqli_query($connection, $query);
-													if (mysqli_num_rows($result) > 0) {
-  									      	while ($row = mysqli_fetch_assoc($result)) {
-  										    		echo "<tr id='" . $row['materialID'] . "' data-toggle='modal' data-target='#myModalEdit'>";
-  										    		echo "<td><a href = '#'>" . $row['materialID'] . "</a></td>";
-  									      		echo "<td>" . $row['materialName'] . "</td>";
-  										    		echo "<td> <input type='button' name='edit' value='Edit' id='" . $row['materialID'] . "' class='btn btn-info btn-xs edit_data' /></td>";
-  										    		echo "<td> <input type='button' name='view' value='view' id='" . $row['materialID'] . "' class='btn btn-info btn-xs view_data' /></td>";
-  										    		echo "</tr>";
-  									      	}
-  								        }
-  							        ?>
-                    </table>
-                </div>
-              </div>
-          </div>
+
+		<div class="container">
+      <?php if(isset($_SESSION['message'])): ?>
+        <div class="alert alert-<?=$_SESSION['msg_type']?>">
+          <?php
+            echo $_SESSION['message'];
+            unset ($_SESSION['message']);
+          ?>
+        </div>
+      <?php endif ?>
+		<div class="row justify-content-center">
+    <div class="col-md-9">
+      <!-- Input from Admin to search for Users -->
+      <input type="text" class = "form-control" id="myInput" onkeyup="myFunction(1)" placeholder="Search for User MaterialName..">
+    <div class="panel panel-default">
+    <div class="panel-heading">
+    <h3 class="panel-title">List Materials</h3>
+    </div>
+
+		<table id= "myTable" class=" table table-striped table-hover ">
+			<tr>
+				<th>Material ID</th>
+        <th>Material Name</th>
+				<th>Description</th>
+				<th>PointsPerKg</th>
+        <th>Action</th>
+      </tr>
+      <?php
+			$query = "SELECT * FROM material ORDER BY materialName";
+			$result = mysqli_query($connection, $query);
+			if (mysqli_num_rows($result) > 0) {
+  		while ($row = mysqli_fetch_assoc($result)){?>
+			<tr>
+				<td><?php echo $row['materialID']; ?></td>
+				<td><?php echo $row['materialName']; ?></td>
+				<td><?php echo $row['description']; ?></td>
+					<td><?php echo $row['pointsPerKg']; ?></td>
+				<td>
+					<a href="material.php?edit= <?php echo $row['materialID'];  ?>"
+					class="btn btn-info">Edit </a>
+					<a href="../php/process.php?delete= <?php echo $row['materialID'];  ?>"
+					class="btn btn-danger">Delete </a>
+				</td>
+			</tr>
+		<?php }
+		}
+	  ?>
+		</table>
+    </div>
+		</div>
+
+    <div class="col-md-3">
+
+		<div class="row justify-content-center">
+		<form method="post" action="../php/process.php" id="insert_form">
+
+			<div class="form-group">
+			<label>Enter Material Name:</label>
+      <input type="text" name="name" id="name" class="form-control" value="<?php echo $name; ?>" placeholder="Enter Material Name" />
+			</div>
+			<div class="form-group">
+      <label>Enter Material Description:</label>
+      <input name="desc" id="desc" class="form-control" value="<?php echo $desc; ?>" placeholder="Enter Material description"/>
+
+			</div>
+			<div class="form-group">
+      <label>Enter Points Per Kg:</label>
+    	<input type="text" name="point" id="point" class="form-control" value="<?php echo $point; ?>" placeholder="Enter Material point" />
+
+			</div>
+			<div class="form-group">
+      <input type="hidden" name="materialID" id="materialID" value="<?php echo $materialID ?>" />
+			<?php if($update == true):?>
+			<input type="submit" name="update" id="update" value="Update" class="btn btn-info" />
+			<?php else:  ?>
+      <input type="submit" name="insert" id="insert" value="Insert" class="btn btn-primary" />
+			<?php endif ?>
+			</div>
+    </form>
+  </div>
+  </div>
+	</div>
+  </div>
+  <footer id="footer">
+    <div class="container">
+      <div class="row">
+        <div style="padding-left:45%">
+          <p>Copyright EcoSave, &copy; 2020</p>
         </div>
       </div>
-    </section>
-
-    <footer id="footer">
-      <div class="container">
-        <div class="row">
-          <div style="padding-left:45%">
-            <p>Copyright EcoSave, &copy; 2020</p>
-          </div>
-        </div>
-      </div>
-    </footer>
-
-
-<?php
-/*
-prompt the user if they failed to sign up
-*/
-if($_SESSION['add'] == "failed") {
-  echo
-  "<script>alert('This Id has been taken!')</script>";
-  unset($_SESSION['add']);
-}
-?>
-<!-- Modals -->
-<div id="add_data_Modal" class="modal fade" role="dialog">
-      <div class="modal-dialog">
-           <div class="modal-content">
-                <div class="modal-header">
-                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                     <h4 class="modal-title">Adding Material</h4>
-                </div>
-                <div class="modal-body">
-                     <form method="post" id="insert_form">
-                          <label>Enter Material Name</label>
-                          <input type="text" name="name" id="name" class="form-control" />
-                          <br />
-                          <label>Enter Material Description</label>
-                          <textarea name="desc" id="desc" class="form-control"></textarea>
-                          <br />
-                          <label>Enter Points Per Kg</label>
-                         	<input type="text" name="point" id="point" class="form-control" />
-                          <br />
-
-                          <input type="hidden" name="materialID" id="materialID" />
-                          <input type="submit" name="insert" id="insert" value="Insert" class="btn btn-success" />
-                     </form>
-                </div>
-                <div class="modal-footer">
-                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
-           </div>
-      </div>
- </div>
-
- <!-- Bootstrap core JavaScript
- ================================================== -->
- <!-- Placed at the end of the document so the pages load faster -->
- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
- <script src="http://cdn.ckeditor.com/4.6.1/standard/ckeditor.js"></script>
- <script type="text/javascript" src="js/bootstrap.min.js"></script>
- <script type="text/javascript" src="js/jquery.js"></script>
-	<script type="text/javascript" src="js/bootstrap.js"></script>
- </body>
+    </div>
+  </footer>
+	</body>
 </html>

@@ -2,6 +2,6 @@
   $serverName = "localhost";
   $dbUserName = "root";
   $dbPassword = "";
-  $dbName = "ecosave";
+  $dbName = "eco";
   $connection = new mysqli($serverName, $dbUserName, $dbPassword, $dbName);
 ?>
