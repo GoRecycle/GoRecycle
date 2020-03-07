@@ -55,7 +55,7 @@ if (empty($_SESSION['userName'])) {
                                   <div class="valid-feedback">⠀</div>
                                   <div class="invalid-feedback">Please fill out this field.</div>
                                 </div>
-                                
+
                                 <div class="form-group">
                                   <label for="pwd">Password:</label>
                                   <input type="password" class="form-control" id="password" placeholder="Enter password" name="pswd" required>
@@ -77,10 +77,10 @@ if (empty($_SESSION['userName'])) {
                                 <div id="register-link" class="text-right form-group">
                                     <a href="registerUser.php" class="text-info">Register Account</a>
                                 </div>
-								<div class="form-group">
+								                <div class="form-group">
                                 <button class="btn btn-primary" value="Log In">Login</button>
-								</div>
-							</form>
+		                            </div>
+							             </form>
                     </div>
 					<?php
 								if($_SESSION['userName'] == "failed") {

@@ -212,22 +212,32 @@ include '../php/process.php'
     <div class="col-md-3">
 
 		<div class="row justify-content-center">
-		<form method="post" action="../php/process.php" id="insert_form">
+		<form class="needs-validation" method="post" action="../php/process.php" id="insert_form">
 
 			<div class="form-group">
 			<label>Enter Material Name:</label>
+      <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-list-alt"></i></span>
       <input type="text" name="name" id="name" class="form-control" value="<?php echo $name; ?>" placeholder="Enter Material Name" />
+      <div class="invalid-feedback">
+        Cannot be empty.
+      </div>
 			</div>
+      </div>
+
 			<div class="form-group">
       <label>Enter Material Description:</label>
+      <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-list-alt"></i></span>
       <input name="desc" id="desc" class="form-control" value="<?php echo $desc; ?>" placeholder="Enter Material description"/>
-
+      </div>
 			</div>
+
 			<div class="form-group">
       <label>Enter Points Per Kg:</label>
+      <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-list-alt"></i></span>
     	<input type="text" name="point" id="point" class="form-control" value="<?php echo $point; ?>" placeholder="Enter Material point" />
-
+      </div>
 			</div>
+
 			<div class="form-group">
       <input type="hidden" name="materialID" id="materialID" value="<?php echo $materialID ?>" />
 			<?php if($update == true):?>
