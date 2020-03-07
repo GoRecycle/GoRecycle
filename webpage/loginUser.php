@@ -16,15 +16,11 @@ if (empty($_SESSION['userName'])) {
     <link href="css/style.css" rel="stylesheet" id="bootstrap-css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-
-
   </head>
-
-
   <body>
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -49,6 +45,7 @@ if (empty($_SESSION['userName'])) {
 				<div class="col-md-3">
 					<div class="card">
 						<div class="card-header"><h3 class="text-left text-info">Login</h3></div>
+
 							<div class="card-body">
                             <form action="../php/validateUser.php" method="POST" class="was-validated">
                                 <br>
@@ -58,26 +55,27 @@ if (empty($_SESSION['userName'])) {
                                   <div class="valid-feedback">⠀</div>
                                   <div class="invalid-feedback">Please fill out this field.</div>
                                 </div>
+                                
                                 <div class="form-group">
                                   <label for="pwd">Password:</label>
                                   <input type="password" class="form-control" id="password" placeholder="Enter password" name="pswd" required>
                                   <div class="valid-feedback">⠀</div>
                                   <div class="invalid-feedback">Please fill out this field.</div>
                                 </div>
-								<div class="form-group">
+
+								                <div class="form-group">
                                   <label for="type">Type:</label>
                                   <select name="type" class="form-control selectpicker">
-                                    	 <option value=''></option>
-									                     <option value="collector">Collector</option>
-									                     <option value="recycler">Recycler</option>
-								                  </select>
+                                    <option value=''></option>
+                                    <option value="collector">Collector</option>
+                                    <option value="recycler">Recycler</option>
+                                  </select>
                                   <div class="valid-feedback">⠀</div>
                                   <div class="invalid-feedback">Please fill out this field.</div>
                                 </div>
+
                                 <div id="register-link" class="text-right form-group">
                                     <a href="registerUser.php" class="text-info">Register Account</a>
-                                    |
-                                    <a href="#" class="text-info">Forgot Account</a>
                                 </div>
 								<div class="form-group">
                                 <button class="btn btn-primary" value="Log In">Login</button>

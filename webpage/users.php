@@ -153,7 +153,7 @@ if (empty($_SESSION['add'])) {
       <div class="container">
         <div class="row">
           <div class="col-md-10">
-            <h1><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Users <small>Manage Users</small></h1>
+            <h1><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Users <small>Manage Your Users</small></h1>
           </div>
         </div>
       </div>
