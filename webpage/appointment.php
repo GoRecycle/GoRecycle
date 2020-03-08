@@ -170,7 +170,7 @@ include '../php/addSubmission.php';
             <th>Status </th>
           </tr>
           <?php
-          $query = "SELECT * FROM submission";
+          $query = "SELECT * FROM submission WHERE status='Proposed'";
           $result = mysqli_query($connection, $query);
           if (mysqli_num_rows($result) > 0) {
           while ($row = mysqli_fetch_assoc($result)){?>
