@@ -3,16 +3,27 @@ session_start();
 include 'dbConnection.php';
 
 
-$userName = $_POST['uname'];
+$userName = $_SESSION['userName'];
 $password = $_POST['pswd'];
 $fullName = $_POST['fname'];
+echo "$userName";
+echo "$password";
+echo "$fullName";
+
 
 $query = " UPDATE user
- SET password = '$password', fullName = '$fullName'
+ SET username = '$userName', password = '$password', fullName = '$fullName'
  WHERE username = '$userName' ";
 
- mysqli_fetch_assoc -> mysqli_query($connection, $query);
+ $result = mysqli_query($connection, $query);
 
- header("Location: ../webpage/userProfile.php");
+  if($result){
+    mysqli_query($connection, $query);
+    $_SESSION['edit'] = "success";
+  }else{
+    	$_SESSION['edit'] = "failed";
+  }
 
+header("Location: ../webpage/userProfile.php");
+mysqli_close($connection);
 ?>

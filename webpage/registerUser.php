@@ -119,7 +119,7 @@ if (empty($_SESSION['userName'])) {
             </div>
             <!-- body modal -->
             <div class="modal-body">
-                <p>The Intellectual Property disclosure will inform users that the contents, logo and other visual media you created is your property and is protected by copyright laws.</p>
+                <p>Demo App</p>
             </div>
             <!-- footer modal -->
             <div class="modal-footer">

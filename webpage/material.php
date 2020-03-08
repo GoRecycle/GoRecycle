@@ -156,9 +156,6 @@ include '../php/process.php'
     </div>
   </header>
 
-
-
-
 		<div class="container">
       <?php if(isset($_SESSION['message'])): ?>
         <div class="alert alert-<?=$_SESSION['msg_type']?>">
@@ -169,7 +166,7 @@ include '../php/process.php'
         </div>
       <?php endif ?>
 		<div class="row justify-content-center">
-    <div class="col-md-9">
+    <div class="col-md-8">
       <!-- Input from Admin to search for Users -->
       <input type="text" class = "form-control" id="myInput" onkeyup="myFunction(1)" placeholder="Search for User MaterialName..">
     <div class="panel panel-default">
@@ -194,7 +191,7 @@ include '../php/process.php'
 				<td><?php echo $row['materialID']; ?></td>
 				<td><?php echo $row['materialName']; ?></td>
 				<td><?php echo $row['description']; ?></td>
-					<td><?php echo $row['pointsPerKg']; ?></td>
+				<td><?php echo $row['pointsPerKg']; ?></td>
 				<td>
 					<a href="material.php?edit= <?php echo $row['materialID'];  ?>"
 					class="btn btn-info">Edit </a>
@@ -209,25 +206,32 @@ include '../php/process.php'
     </div>
 		</div>
 
+    <div class="container">
     <div class="col-md-3">
-
 		<div class="row justify-content-center">
-		<form method="post" action="../php/process.php" id="insert_form">
+		<form class="needs-validation" method="post" action="../php/process.php" id="insert_form">
 
 			<div class="form-group">
 			<label>Enter Material Name:</label>
+      <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-list-alt"></i></span>
       <input type="text" name="name" id="name" class="form-control" value="<?php echo $name; ?>" placeholder="Enter Material Name" />
 			</div>
+      </div>
+
 			<div class="form-group">
       <label>Enter Material Description:</label>
+      <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-list-alt"></i></span>
       <input name="desc" id="desc" class="form-control" value="<?php echo $desc; ?>" placeholder="Enter Material description"/>
-
+      </div>
 			</div>
+
 			<div class="form-group">
       <label>Enter Points Per Kg:</label>
+      <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-list-alt"></i></span>
     	<input type="text" name="point" id="point" class="form-control" value="<?php echo $point; ?>" placeholder="Enter Material point" />
-
+      </div>
 			</div>
+
 			<div class="form-group">
       <input type="hidden" name="materialID" id="materialID" value="<?php echo $materialID ?>" />
 			<?php if($update == true):?>
@@ -239,8 +243,10 @@ include '../php/process.php'
     </form>
   </div>
   </div>
+  </div>
 	</div>
   </div>
+
   <footer id="footer">
     <div class="container">
       <div class="row">
@@ -250,5 +256,6 @@ include '../php/process.php'
       </div>
     </div>
   </footer>
+
 	</body>
 </html>

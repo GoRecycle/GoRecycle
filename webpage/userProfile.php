@@ -1,6 +1,9 @@
 <?php
 session_start();
 include '../php/dbConnection.php';
+if (empty($_SESSION['edit'])) {
+  $_SESSION['edit'] = "empty";
+}
 ?>
 
 <!DOCTYPE html>
@@ -19,7 +22,9 @@ include '../php/dbConnection.php';
 
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-
+    <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+    <script src='http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js'></script>
+    <script src='http://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.4.5/js/bootstrapvalidator.min.js'></script>
   </head>
   <body>
 		<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
@@ -63,23 +68,55 @@ include '../php/dbConnection.php';
         </div>
       </div>
     </header>
-
+    <?php
+    $userName = $_SESSION['userName'];
+    $query = "SELECT * FROM user WHERE username = '$userName'";
+    $result = mysqli_query($connection, $query);
+  	$row = mysqli_fetch_assoc($result);
+    ?>
 		<div class="container">
-			<form method="post" action="../php/editProfile.php" id="update_profile">
+      <?php
+            if($_SESSION['edit'] == "failed") {
+              echo
+              "<br />
+              <div class='alert alert-danger'>
+              Update profile failed!!
+              </div>";
+              unset($_SESSION['edit']);
+            }else if($_SESSION['edit'] == "success"){
+              echo
+              "<br />
+              <div class='alert alert-success'>
+              Update profile Success!!
+              </div>";
+              unset($_SESSION['edit']);
+            }else {
+              unset($_SESSION['edit']);
+            }
+      ?>
+
+			<form method="post" action="../php/editProfile.php" class="was-validated">
 	      <div class="form-group">
 	      <label>Enter UserName</label>
-	      <input type="text" name="uname" id="name" class="form-control" value="<?php echo $_SESSION['userName']; ?>" placeholder="Enter UserName" disabled />
+        <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+	      <input type="text" name="unam" id="unam" class="form-control" value="<?php echo $_SESSION['userName']; ?>" placeholder="Enter UserName" disabled />
+        </div>
 	      </div>
-	      <div class="form-group">
+
+	      <div class="form-group has-feedback">
 	      <label>Enter Password</label>
-	      <input name="pswd" id="desc" class="form-control" value="<?php echo  $_SESSION['password']; ?>" placeholder="Enter New Password"/>
-
+        <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-wrench"></i></span>
+	      <input name="pswd" type="password" id="pswd" class="form-control" value="<?php echo  $row['password']; ?>" placeholder="Enter New Password"/>
+        </div>
 	      </div>
-	      <div class="form-group">
+
+	      <div class="form-group has-feedback">
 	      <label>FullName</label>
-	      <input type="text" name="fname" id="fname" class="form-control" value="<?php echo  $_SESSION['fullName']; ?>" placeholder="Enter New FullName" />
-
+        <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+	      <input type="text" name="fname" id="fname" class="form-control" value="<?php echo $row['fullName']; ?>" placeholder="Enter New FullName" />
+        </div>
 	      </div>
+
 	      <div class="form-group">
 	      <input type="submit" name="update" id="update" value="Update" class="btn btn-info" />
 	      </div>
@@ -95,6 +132,7 @@ include '../php/dbConnection.php';
         </div>
       </div>
     </footer>
+
 
 
 
