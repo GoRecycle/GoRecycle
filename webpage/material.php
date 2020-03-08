@@ -156,9 +156,6 @@ include '../php/process.php'
     </div>
   </header>
 
-
-
-
 		<div class="container">
       <?php if(isset($_SESSION['message'])): ?>
         <div class="alert alert-<?=$_SESSION['msg_type']?>">
@@ -169,7 +166,7 @@ include '../php/process.php'
         </div>
       <?php endif ?>
 		<div class="row justify-content-center">
-    <div class="col-md-9">
+    <div class="col-md-8">
       <!-- Input from Admin to search for Users -->
       <input type="text" class = "form-control" id="myInput" onkeyup="myFunction(1)" placeholder="Search for User MaterialName..">
     <div class="panel panel-default">
@@ -194,7 +191,7 @@ include '../php/process.php'
 				<td><?php echo $row['materialID']; ?></td>
 				<td><?php echo $row['materialName']; ?></td>
 				<td><?php echo $row['description']; ?></td>
-					<td><?php echo $row['pointsPerKg']; ?></td>
+				<td><?php echo $row['pointsPerKg']; ?></td>
 				<td>
 					<a href="material.php?edit= <?php echo $row['materialID'];  ?>"
 					class="btn btn-info">Edit </a>
@@ -209,8 +206,8 @@ include '../php/process.php'
     </div>
 		</div>
 
+    <div class="container">
     <div class="col-md-3">
-
 		<div class="row justify-content-center">
 		<form class="needs-validation" method="post" action="../php/process.php" id="insert_form">
 
@@ -218,9 +215,6 @@ include '../php/process.php'
 			<label>Enter Material Name:</label>
       <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-list-alt"></i></span>
       <input type="text" name="name" id="name" class="form-control" value="<?php echo $name; ?>" placeholder="Enter Material Name" />
-      <div class="invalid-feedback">
-        Cannot be empty.
-      </div>
 			</div>
       </div>
 
@@ -249,8 +243,10 @@ include '../php/process.php'
     </form>
   </div>
   </div>
+  </div>
 	</div>
   </div>
+
   <footer id="footer">
     <div class="container">
       <div class="row">
@@ -260,5 +256,6 @@ include '../php/process.php'
       </div>
     </div>
   </footer>
+
 	</body>
 </html>

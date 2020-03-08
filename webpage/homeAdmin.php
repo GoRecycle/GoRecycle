@@ -67,11 +67,27 @@ if (empty($_SESSION['add'])) {
         <div class="row">
           <div class="col-md-3">
             <div class="list-group">
-              <a href="#" class="list-group-item active main-color-bg">
+              <a href="homeAdmin.php" class="list-group-item active main-color-bg">
                 <span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Dashboard
               </a>
-              <a href="#" class="list-group-item"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Materials <span class="badge">12</span></a>
-              <a href="#" class="list-group-item"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Users <span class="badge">203</span></a>
+              <a href="material.php" class="list-group-item"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Materials <span class="badge">
+								<?php
+									$query = "SELECT count(*) as total FROM material";
+									$result = mysqli_query($connection, $query);
+									$values = mysqli_fetch_assoc($result);
+									$num_rows = $values['total'];
+									echo $num_rows;
+									?>
+							</span></a>
+              <a href="users.php" class="list-group-item"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Users <span class="badge">
+								<?php
+									$query = "SELECT count(*) as total FROM user";
+									$result = mysqli_query($connection, $query);
+									$values = mysqli_fetch_assoc($result);
+									$num_rows = $values['total'];
+									echo $num_rows;
+									?>
+							</span></a>
             </div>
 
             <div class="well">
