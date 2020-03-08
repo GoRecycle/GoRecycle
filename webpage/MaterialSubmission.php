@@ -40,7 +40,8 @@ include '../php/dbConnection.php';
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
             <li><a href="homeCollector.php">Home</a></li>
-            <li><a href="materialSubmission.php">Submission</a></li>
+            <li><a href="materialSubmission.php">Material Submission</a></li>
+            <li><a href="viewSubCol.php">View Submission</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li><a href="userProfile.php">Welcome, <?php echo $_SESSION['fullName'] ?></a></li>
@@ -60,7 +61,7 @@ include '../php/dbConnection.php';
       </div>
     </header>
 
-		
+
 
 
     <div class="container">

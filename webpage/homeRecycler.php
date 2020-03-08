@@ -39,8 +39,9 @@ include '../php/dbConnection.php';
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li><a href="home.php">Home</a></li>
-            <li><a href="material.php">Submission</a></li>
+            <li><a href="homeCollector.php">Home</a></li>
+            <li><a href="appointment.php">Create Appointment</a></li>
+            <li><a href="viewSubRec.php">View Submission</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li><a href="userProfile.php">Welcome, <?php echo $_SESSION['fullName'] ?></a></li>

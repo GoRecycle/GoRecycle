@@ -9,7 +9,7 @@ include '../php/addSubmission.php';
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>User Area | Home Collector</title>
+    <title>User Area | Create Appointment</title>
 	  <link rel="icon" href="img/headLog.jpg">
 		<!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -39,8 +39,9 @@ include '../php/addSubmission.php';
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li><a href="homeRecycler.php">Home</a></li>
-            <li><a href="appointment.php">Submission</a></li>
+            <li><a href="homeCollector.php">Home</a></li>
+            <li><a href="appointment.php">Create Appointment</a></li>
+            <li><a href="viewSubRec.php">View Submission</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li><a href="userProfile.php">Welcome, <?php echo $_SESSION['fullName'] ?></a></li>
