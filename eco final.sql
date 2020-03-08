@@ -50,9 +50,9 @@ INSERT INTO `material` (`materialID`, `materialName`, `description`, `pointsPerK
 CREATE TABLE IF NOT EXISTS `submission` (
   `submissionID` int(11) NOT NULL AUTO_INCREMENT,
   `proposedDate` date NOT NULL,
-  `actualDate` date NOT NULL,
-  `weightInKg` int(11) NOT NULL,
-  `pointsAwarded` int(11) NOT NULL,
+  `actualDate` date ,
+  `weightInKg` int(11) ,
+  `pointsAwarded` int(11) ,
   `status` varchar(10) NOT NULL,
   `materialID` int(11) NOT NULL,
   `cUserName` varchar(10) NOT NULL,
