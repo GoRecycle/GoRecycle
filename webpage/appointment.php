@@ -111,7 +111,7 @@ include '../php/addSubmission.php';
       		<form method="post" action="../php/addSubmission.php" id="insert_form">
 
             <div class="form-group">
-              <label>Select Collector Name :</label>
+              <label>Select Material Name :</label>
               <?php
               $query1 = "SELECT * FROM material";
               $result1 = mysqli_query($connection,$query1);
