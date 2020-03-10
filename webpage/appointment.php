@@ -158,7 +158,7 @@ include '../php/addSubmission.php';
         <div class="col-md-9">
         <div class="panel panel-default">
         <div class="panel-heading">
-        <h3 class="panel-title">Submission List</h3>
+        <h3 class="panel-title">Appointment List</h3>
         </div>
 
         <table id= "myTable" class=" table table-striped table-hover ">
