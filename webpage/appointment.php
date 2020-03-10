@@ -170,13 +170,13 @@ include '../php/addSubmission.php';
             <th>Status </th>
           </tr>
           <?php
-          $query = "SELECT * FROM submission WHERE status='Proposed'";
+          $query = "SELECT submissionID,materialName,cUserName,proposedDate,status FROM submission s, material m WHERE s.materialID=m.materialID AND status='Proposed'";
           $result = mysqli_query($connection, $query);
           if (mysqli_num_rows($result) > 0) {
           while ($row = mysqli_fetch_assoc($result)){?>
           <tr>
             <td><?php echo $row['submissionID']; ?></td>
-            <td><?php echo $row['materialID']; ?></td>
+            <td><?php echo $row['materialName']; ?></td>
             <td><?php echo $row['cUserName']; ?></td>
             <td><?php echo $row['proposedDate']; ?></td>
             <td><?php echo $row['status']; ?></td>
