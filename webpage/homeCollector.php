@@ -44,7 +44,7 @@ include '../php/dbConnection.php';
             <li><a href="viewSubCol.php">View Submission</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="userProfile.php">Welcome, <?php echo $_SESSION['fullName'] ?></a></li>
+            <li><a href="userProfile.php">Welcome, <?php echo $_SESSION['userName'] ?></a></li>
             <li><a href="index.php">Logout</a></li>
           </ul>
         </div><!--/.nav-collapse -->

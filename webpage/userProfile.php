@@ -52,7 +52,7 @@ if (empty($_SESSION['edit'])) {
             <li><a href="#">Submission</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="userProfile.php">Welcome,  <?php echo $_SESSION['fullName'] ?></a></li>
+            <li><a href="userProfile.php">Welcome,  <?php echo $_SESSION['userName'] ?></a></li>
             <li><a href="index.php">Logout</a></li>
           </ul>
         </div><!--/.nav-collapse -->
@@ -96,32 +96,73 @@ if (empty($_SESSION['edit'])) {
       ?>
 
 			<form method="post" action="../php/editProfile.php" class="was-validated">
-	      <div class="form-group">
-	      <label>Enter UserName</label>
-        <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
-	      <input type="text" name="unam" id="unam" class="form-control" value="<?php echo $_SESSION['userName']; ?>" placeholder="Enter UserName" disabled />
+      <div class="container">
+    	<div class="row justify-content-center">
+        <div class="col-md-6">
+	         <div class="form-group">
+	            <label>Enter UserName</label>
+              <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+	               <input type="text" name="unam" id="unam" class="form-control" value="<?php echo $_SESSION['userName']; ?>" placeholder="Enter UserName" disabled />
+               </div>
+	         </div>
+
+	          <div class="form-group has-feedback">
+	             <label>Enter Password</label>
+               <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-wrench"></i></span>
+	                <input name="pswd" type="password" id="pswd" class="form-control" value="<?php echo  $row['password']; ?>" placeholder="Enter New Password"/>
+               </div>
+	          </div>
+
+	           <div class="form-group has-feedback">
+	              <label>FullName</label>
+                <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+	                 <input type="text" name="fname" id="fname" class="form-control" value="<?php echo $row['fullName']; ?>" placeholder="Enter New FullName" />
+                </div>
+	          </div>
+        </div>
+        <?php if($_SESSION['userTyp']== "collector"):?>
+        <div class="col-md-6">
+        <div class="form-group has-feedback">
+	      <label>Days</label>
+        <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
+	      <select name="matID" class="form-control" id="matID">
+          <option value="Sunday"> Sunday </option>
+          <option value="Monday"> Monday </option>
+          <option value="Tuesday"> Tuesday </option>
+          <option value="Wednesday"> Wednesday </option>
+          <option value="Thursday"> Thursday </option>
+          <option value="Friday"> Friday </option>
+          <option value="Saturday"> Saturday </option>
+        </select>
         </div>
 	      </div>
 
-	      <div class="form-group has-feedback">
-	      <label>Enter Password</label>
-        <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-wrench"></i></span>
-	      <input name="pswd" type="password" id="pswd" class="form-control" value="<?php echo  $row['password']; ?>" placeholder="Enter New Password"/>
+        <div class="form-group has-feedback">
+          <label>Select Material Name :</label>
+          <?php
+          $query1 = "SELECT * FROM material";
+          $result1 = mysqli_query($connection,$query1);
+          ?>
+          <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-list-alt"></i></span>
+          <select name="matID" class="form-control" id="matID">
+            <?php while($data = mysqli_fetch_assoc($result1) ){?>
+              <option value="<?php echo $data['materialID']; ?>"><?php echo $data['materialName']; ?></option>
+            <?php } ?>
+          </select>
+          <br>
+          </div>
         </div>
-	      </div>
-
-	      <div class="form-group has-feedback">
-	      <label>FullName</label>
-        <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-	      <input type="text" name="fname" id="fname" class="form-control" value="<?php echo $row['fullName']; ?>" placeholder="Enter New FullName" />
         </div>
-	      </div>
+        </div>
+        <?php else: ?>
+        <br><br><br><br><br><br><br><br><br><br><br><br>
+        <?php endif ?>
 
-	      <div class="form-group">
-	      <input type="submit" name="update" id="update" value="Update" class="btn btn-info" />
-	      </div>
+         <div class="form-group">
+              <input type="submit" name="update" id="update" value="Update" class="btn btn-info"/>
+         </div>
 	    </form>
-		</div>
+      </div>
 
     <footer id="footer">
       <div class="container">
@@ -132,7 +173,7 @@ if (empty($_SESSION['edit'])) {
         </div>
       </div>
     </footer>
-
+</div>
 
 
 
