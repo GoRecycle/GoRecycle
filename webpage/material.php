@@ -214,7 +214,7 @@ include '../php/process.php'
 			<div class="form-group">
 			<label>Enter Material Name:</label>
       <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-list-alt"></i></span>
-      <input type="text" name="name" id="name" class="form-control" value="<?php echo $name; ?>" placeholder="Enter Material Name" />
+      <input type="text" name="name" id="name" class="form-control" value="<?php echo $name; ?>" placeholder="Enter Material Name" required/>
 			</div>
       </div>
 
@@ -228,7 +228,7 @@ include '../php/process.php'
 			<div class="form-group">
       <label>Enter Points Per Kg:</label>
       <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-list-alt"></i></span>
-    	<input type="text" name="point" id="point" class="form-control" value="<?php echo $point; ?>" placeholder="Enter Material point" />
+    	<input type="text" name="point" id="point" class="form-control" value="<?php echo $point; ?>" placeholder="Enter Material point" required/>
       </div>
 			</div>
 

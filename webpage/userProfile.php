@@ -123,9 +123,10 @@ if (empty($_SESSION['edit'])) {
         <?php if($_SESSION['userTyp']== "collector"):?>
         <div class="col-md-6">
         <div class="form-group has-feedback">
-	      <label>Days</label>
+	      <label>Schedule</label>
         <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
-	      <select name="matID" class="form-control" id="matID">
+	      <select name="sch" class="form-control" id="sch">
+          <option value="<?php echo $row['day']; ?>" selected disabled><?php echo $row['day']; ?></option>
           <option value="Sunday"> Sunday </option>
           <option value="Monday"> Monday </option>
           <option value="Tuesday"> Tuesday </option>
@@ -145,8 +146,9 @@ if (empty($_SESSION['edit'])) {
           ?>
           <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-list-alt"></i></span>
           <select name="matID" class="form-control" id="matID">
+            <option value="<?php echo $row['materialTyp']; ?>" selected disabled><?php echo $row['materialTyp']; ?></option>
             <?php while($data = mysqli_fetch_assoc($result1) ){?>
-              <option value="<?php echo $data['materialID']; ?>"><?php echo $data['materialName']; ?></option>
+              <option value="<?php echo $data['materialName']; ?>"><?php echo $data['materialName']; ?></option>
             <?php } ?>
           </select>
           <br>
