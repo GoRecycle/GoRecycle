@@ -63,16 +63,6 @@ if (empty($_SESSION['userName'])) {
                                   <div class="invalid-feedback">Please fill out this field.</div>
                                 </div>
 
-								                <div class="form-group">
-                                  <label for="type">Type:</label>
-                                  <select name="type" class="form-control selectpicker">
-                                    <option value=''></option>
-                                    <option value="collector">Collector</option>
-                                    <option value="recycler">Recycler</option>
-                                  </select>
-                                  <div class="valid-feedback">⠀</div>
-                                  <div class="invalid-feedback">Please fill out this field.</div>
-                                </div>
 
                                 <div id="register-link" class="text-right form-group">
                                     <a href="registerUser.php" class="text-info">Register Account</a>

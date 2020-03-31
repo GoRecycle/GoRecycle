@@ -99,7 +99,7 @@ if (empty($_SESSION['userName'])) {
                                                     <div class="invalid-feedback">Please re enter your Password.</div>
                                             </div>
                                         <button class="btn btn-primary">Register</button>
-                                    </form>
+                      </form>
 								</div>
 						</div>
                     </div>
