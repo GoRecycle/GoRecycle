@@ -148,7 +148,7 @@ if (empty($_SESSION['edit'])) {
           <select name="matID" class="form-control" id="matID">
             <option value="<?php echo $row['materialTyp']; ?>" selected disabled><?php echo $row['materialTyp']; ?></option>
             <?php while($data = mysqli_fetch_assoc($result1) ){?>
-              <option value="<?php echo $data['materialName']; ?>"><?php echo $data['materialName']; ?></option>
+              <option value="<?php echo $data['materialID']; ?>"><?php echo $data['materialName']; ?></option>
             <?php } ?>
           </select>
           <br>
