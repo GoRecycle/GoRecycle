@@ -113,12 +113,12 @@ include '../php/addSubmission.php';
             <div class="form-group">
               <label>Select Material Name :</label>
               <?php
-              $query1 = "SELECT * FROM user, material where user.materialTyp = material.materialID AND type='collector'";
+              $query1 = "SELECT * FROM material ";
               $result1 = mysqli_query($connection,$query1);
               ?>
               <select name="matID" class="form-control" id="matID" required>
                 <?php while($data = mysqli_fetch_assoc($result1) ){?>
-                  <option value="<?php echo $data['materialTyp']; ?>"><?php echo $data['materialName']; ?></option>
+                  <option value="<?php echo $data['materialID']; ?>"><?php echo $data['materialName']; ?></option>
                 <?php } ?>
               </select>
       			</div>
