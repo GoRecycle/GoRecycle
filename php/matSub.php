@@ -2,18 +2,24 @@
 session_start();
 include 'dbConnection.php';
 
+
+
+
 $searchSubId = $_POST['sSubID'];
 $weightInKg = $_POST['weightInKg'];
-$actualDate = $_POST['actualDate'];
+$actualDate = date("Y-m-d H:i:s");
 $status = 'submitted';
+$point = "SELECT pointsPerKg FROM submission, material WHERE submission.materialID = material.materialID AND submissionID = '".$_GET['sSubID']."' ";
 
 $searchSubId = mysqli_real_escape_string($connection, $searchSubId);
 $weightInKg = mysqli_real_escape_string($connection, $weightInKg);
-$actualDate = mysqli_real_escape_string($connection, $actualDate);
-$status = mysqli_real_escape_string($connection, $status);
 
-$point = "SELECT pointsPerKg FROM submission s, material m WHERE s.materialID=m.materialID AND submissionID = '$searchSubId' ";
-mysqli_query($connection,$point);
+$status = mysqli_real_escape_string($connection, $status);
+$point = mysqli_real_escape_string($connection, $point);
+
+
+
+
 
 
 $tpoint = $weightInKg * $point;

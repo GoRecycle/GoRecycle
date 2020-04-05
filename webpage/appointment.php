@@ -44,7 +44,7 @@ include '../php/addSubmission.php';
             <li><a href="viewSubRec.php">View Submission</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="userProfile.php">Welcome, <?php echo $_SESSION['userName'] ?></a></li>
+            <li><a href="userProfile.php">Welcome, <?php echo $_SESSION['fullName'] ?></a></li>
             <li><a href="index.php">Logout</a></li>
           </ul>
         </div><!--/.nav-collapse -->
@@ -113,12 +113,12 @@ include '../php/addSubmission.php';
             <div class="form-group">
               <label>Select Material Name :</label>
               <?php
-              $query1 = "SELECT * FROM material";
+              $query1 = "SELECT * FROM user";
               $result1 = mysqli_query($connection,$query1);
               ?>
-              <select name="matID" class="form-control" id="matID">
+              <select name="matID" class="form-control" id="matID" required>
                 <?php while($data = mysqli_fetch_assoc($result1) ){?>
-                  <option value="<?php echo $data['materialID']; ?>"><?php echo $data['materialName']; ?></option>
+                  <option value="<?php echo $data['materialTyp']; ?>"><?php echo $data['materialTyp']; ?></option>
                 <?php } ?>
               </select>
       			</div>
@@ -129,7 +129,7 @@ include '../php/addSubmission.php';
               $query2 = "SELECT * FROM user WHERE type = 'collector'";
               $result2 = mysqli_query($connection,$query2);
               ?>
-              <select name="cName" class="form-control" id="cName">
+              <select name="cName" class="form-control" id="cName" required>
                 <?php while($data = mysqli_fetch_assoc($result2) ){?>
                   <option value="<?php echo $data['fullName']; ?>"><?php echo $data['fullName']; ?></option>
                 <?php } ?>
@@ -138,12 +138,20 @@ include '../php/addSubmission.php';
 
       			<div class="form-group">
             <label>Proporsed Date : </label>
-          	<input type="date" name="pDate" id="pDate" class="form-control" placeholder="Enter Proporsed Date" />
+            <?php
+            $query2 = "SELECT * FROM user WHERE type = 'collector'";
+            $result2 = mysqli_query($connection,$query2);
+            ?>
+            <select name="pDate" class="form-control" id="pDate" required>
+              <?php while($data = mysqli_fetch_assoc($result2) ){?>
+                <option value="<?php echo $data['day']; ?>"><?php echo $data['day']; ?></option>
+              <?php } ?>
+            </select>
       			</div>
 
 
       			<div class="form-group">
-
+            <input type="hidden" name="rName" id="rName" value="<?php echo $_SESSION['fullName'] ?>" />
             <input type="hidden" name="subID" id="subID" value="<?php echo $subID ?>" />
       			<?php if($update == true):?>
       			<input type="submit" name="update" id="update" value="Update" class="btn btn-info" />
@@ -158,7 +166,7 @@ include '../php/addSubmission.php';
         <div class="col-md-9">
         <div class="panel panel-default">
         <div class="panel-heading">
-        <h3 class="panel-title">Appointment List</h3>
+        <h3 class="panel-title">Submission List</h3>
         </div>
 
         <table id= "myTable" class=" table table-striped table-hover ">
@@ -170,7 +178,7 @@ include '../php/addSubmission.php';
             <th>Status </th>
           </tr>
           <?php
-          $query = "SELECT submissionID,materialName,cUserName,proposedDate,status FROM submission s, material m WHERE s.materialID=m.materialID AND status='Proposed'";
+          $query = "SELECT * FROM submission  WHERE status='Proposed'";
           $result = mysqli_query($connection, $query);
           if (mysqli_num_rows($result) > 0) {
           while ($row = mysqli_fetch_assoc($result)){?>

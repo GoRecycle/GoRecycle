@@ -44,7 +44,7 @@ include '../php/dbConnection.php';
             <li><a href="viewSubCol.php">View Submission</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="userProfile.php">Welcome, <?php echo $_SESSION['userName'] ?></a></li>
+            <li><a href="userProfile.php">Welcome, <?php echo $_SESSION['fullName'] ?></a></li>
             <li><a href="index.php">Logout</a></li>
           </ul>
         </div><!--/.nav-collapse -->
@@ -85,23 +85,20 @@ include '../php/dbConnection.php';
         <th>Submission ID</th>
         <th>Material Name</th>
         <th>Collector Name</th>
-        <th>Recycler Name</th>
         <th>Proporsed Date</th>
         <th>Status </th>
       </tr>
       <?php
-      $query = "SELECT * FROM submission WHERE status='Proposed'";
+      $query = "SELECT * FROM submission  WHERE status='Proposed'";
       $result = mysqli_query($connection, $query);
       if (mysqli_num_rows($result) > 0) {
       while ($row = mysqli_fetch_assoc($result)){?>
       <tr>
         <td><?php echo $row['submissionID']; ?></td>
-        <td><?php echo $row['materialID']; ?></td>
+        <td><?php echo $row['materialName']; ?></td>
         <td><?php echo $row['cUserName']; ?></td>
-        <td><?php echo $row['rUserName']; ?></td>
         <td><?php echo $row['proposedDate']; ?></td>
         <td><?php echo $row['status']; ?></td>
-
       </tr>
     <?php }
     }
@@ -126,7 +123,7 @@ include '../php/dbConnection.php';
 
       <div class="form-group">
         <label>Actual Date :</label>
-        <input type="date" name="actualDate" id="actualDate" class="form-control" />
+        <input type="text" name="actualDate" id="actualDate" class="form-control" value="<?php $tgl=date('d-m-Y'); echo $tgl; ?>" readonly />
       </div>
 
       <div class="form-group">
@@ -160,13 +157,13 @@ include '../php/dbConnection.php';
       <th>Status </th>
     </tr>
     <?php
-    $query = "SELECT * FROM submission WHERE status='submitted'";
+    $query = "SELECT * FROM submission  WHERE status='submitted'";
     $result = mysqli_query($connection, $query);
     if (mysqli_num_rows($result) > 0) {
     while ($row = mysqli_fetch_assoc($result)){?>
     <tr>
       <td><?php echo $row['submissionID']; ?></td>
-      <td><?php echo $row['materialID']; ?></td>
+      <td><?php echo $row['materialName']; ?></td>
       <td><?php echo $row['cUserName']; ?></td>
       <td><?php echo $row['rUserName']; ?></td>
       <td><?php echo $row['proposedDate']; ?></td>
