@@ -43,6 +43,7 @@ if (empty($_SESSION['add'])) {
             <li class="active"><a href="homeAdmin.php">Dashboard</a></li>
             <li><a href="material.php">Materials</a></li>
             <li><a href="users.php">Users</a></li>
+					 <li><a href="submissions.php">Submission</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li><a href="#">Welcome, Admin</a></li>

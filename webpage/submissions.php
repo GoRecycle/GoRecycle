@@ -1,20 +1,17 @@
 <?php
-session_start();
 include '../php/dbConnection.php';
 
-if (empty($_SESSION['add'])) {
-	$_SESSION['add'] = "empty";
-}
 ?>
-<!DOCTYPE html>
+<!DOCTYPE Html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Admin Area | Users</title>
-	  <link rel="icon" href="img/headLog.jpg">
-		<!-- Latest compiled and minified CSS -->
+    <title>Admin Area | Materials</title>
+
+    <link rel="icon" href="img/headLog.jpg">
+    <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 
     <!-- jQuery library -->
@@ -119,11 +116,11 @@ if (empty($_SESSION['add'])) {
     }
 
     </script>
-  </head>
-  <body>
-		<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</head>
+	<body>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     <nav class="navbar navbar-default">
       <div class="container">
         <div class="navbar-header">
@@ -138,9 +135,9 @@ if (empty($_SESSION['add'])) {
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
             <li><a href="homeAdmin.php">Dashboard</a></li>
-            <li><a href="material.php">Materials</a></li>
-            <li class="active"><a href="users.php">Users</a></li>
-						 <li><a href="submissions.php">Submission</a></li>
+            <li  class=""><a href="material.php">Materials</a></li>
+            <li><a href="users.php">Users</a></li>
+            <li  class="active"><a href="submissions.php">Submissions</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li><a href="#">Welcome, Admin</a></li>
@@ -150,86 +147,116 @@ if (empty($_SESSION['add'])) {
       </div>
     </nav>
 
-    <header id="header">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-10">
-            <h1><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Users <small>Manage Your Users</small></h1>
-          </div>
+  <header id="header">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-10">
+          <h1><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Materials <small>Submissions History</small></h1>
         </div>
       </div>
-    </header>
+    </div>
+  </header>
 
-    <section id="main">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
-						<!-- Input from Admin to search for Users -->
-						<input type="text" class = "form-control" id="myInput" onkeyup="myFunction(0)" placeholder="Search for User FullName..">
-              <!-- Latest Users -->
-              <div class="panel panel-default">
-                <div class="panel-heading">
-                  <h3 class="panel-title">Users List</h3>
-                </div>
-                  <table class="table table-striped table-hover">
-                      <tr>
-                        <th>Full Name</th>
-                        <th>Username</th>
-                        <th>Password</th>
-                        <th>User Type</th>
-                        <th>Total Point</th>
-                      </tr>
-                          <?php
-  								            $query = "SELECT * FROM user ORDER BY fullName";
-  								               $result = mysqli_query($connection, $query);
-  								                     if (mysqli_num_rows($result) > 0) {
-  									                       while ($row = mysqli_fetch_assoc($result)) {
-  										                         echo "<tr id='" . $row['username'] . "' data-toggle='modal' data-target='#myModalEdit'>";
-                                               echo "<td>" . $row['fullName'] . "</td>";
-  										                         echo "<td>". $row['username'] . "</td>";
-  									                           echo "<td>" . $row['password'] . "</td>";
-  										                         echo "<td>" . $row['type'] . "</td>";
-                                               echo "<td>" . $row['totalPoint'] . "</td>";
-  										                         echo "</tr>";
-  									                      }
-  								                    }
-  							        ?>
-                    </table>
-              </div>
-          </div>
+		<div class="container">
+      <?php if(isset($_SESSION['message'])): ?>
+        <div class="alert alert-<?=$_SESSION['msg_type']?>">
+          <?php
+            echo $_SESSION['message'];
+            unset ($_SESSION['message']);
+          ?>
+        </div>
+      <?php endif ?>
+		<div class="row justify-content-center">
+    <div class="col-md-12">
+      <!-- Input from Admin to search for Users -->
+      <input type="text" class = "form-control" id="myInput" onkeyup="myFunction(1)" placeholder="Search for User MaterialName..">
+    <div class="panel panel-default">
+    <div class="panel-heading">
+    <h3 class="panel-title">List Materials</h3>
+    </div>
+
+		<table id= "myTable" class="table table-striped table-hover ">
+			<tr>
+				<th>Material ID</th>
+        <th>Material Name</th>
+				<th>Description</th>
+				<th>PointsPerKg</th>
+      </tr>
+      <?php
+			$query = "SELECT * FROM material ORDER BY materialName";
+			$result = mysqli_query($connection, $query);
+			if (mysqli_num_rows($result) > 0) {
+  		while ($row = mysqli_fetch_assoc($result)){?>
+			<tr>
+				<td> <a href="submissions.php?edit= <?php echo $row['materialID'];  ?>"><?php echo $row['materialID']; ?></a></td>
+				<td><?php echo $row['materialName']; ?></td>
+				<td><?php echo $row['description']; ?></td>
+				<td><?php echo $row['pointsPerKg']; ?></td>
+			</tr>
+		<?php }
+		}
+	  ?>
+  </table>
+
+    </div>
+		</div>
+	</div>
+  </div>
+
+  <div class="container">
+    <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">List Submissions</h3>
+    </div>
+    <table id= "myTable" class="table table-striped table-hover ">
+			<tr>
+				<th>Submission ID</th>
+        <th>ProposedDate</th>
+				<th>ActualDate</th>
+				<th>WeightInKG</th>
+        <th>PointsAwarded</th>
+        <th>Status</th>
+        <th>MaterialID</th>
+        <th>Collector Name</th>
+        <th>Recycler Name</th>
+      </tr>
+      <?php
+      $materialID = 0;
+      if(isset($_GET['edit'])){
+          $materialID = $_GET['edit'];
+          	$query = "SELECT * FROM submission where materialID= '$materialID'";
+            	$result = mysqli_query($connection, $query);
+              if (mysqli_num_rows($result) > 0) {
+          		while ($row = mysqli_fetch_assoc($result)){?>
+        			<tr>
+        				<td><?php echo $row['submissionID']; ?></td>
+        				<td><?php echo $row['proposedDate']; ?></td>
+        				<td><?php echo $row['actualDate']; ?></td>
+        				<td><?php echo $row['weightInKg']; ?></td>
+                <td><?php echo $row['pointsAwarded']; ?></td>
+                <td><?php echo $row['status']; ?></td>
+                <td><?php echo $row['materialID']; ?></td>
+                <td><?php echo $row['cUserName']; ?></td>
+                <td><?php echo $row['rUserName']; ?></td>
+        			</tr>
+        		<?php }
+        		}
+        	  ?>
+          <?php }
+          ?>
+		</table>
+  </div>
+</div>
+
+  <footer id="footer">
+    <div class="container">
+      <div class="row">
+        <div style="padding-left:45%">
+          <p>Copyright EcoSave, &copy; 2020</p>
         </div>
       </div>
-    </section>
+    </div>
+  </footer>
 
-    <footer id="footer">
-      <div class="container">
-        <div class="row">
-          <div style="padding-left:45%">
-            <p>Copyright EcoSave, &copy; 2020</p>
-          </div>
-        </div>
-      </div>
-    </footer>
-
-    <!-- Modals -->
-    <?php
-/*
-prompt the user if they failed to sign up
-*/
-if($_SESSION['add'] == "failed") {
-  echo
-  "<script>alert('This Id has been taken!')</script>";
-  unset($_SESSION['add']);
-}
-?>
-
-
-
-
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-  </body>
+	</body>
 </html>
