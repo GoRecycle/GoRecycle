@@ -224,7 +224,7 @@ include '../php/dbConnection.php';
       $materialID = '';
       if(isset($_GET['edit'])){
           $materialID = $_GET['edit'];
-          	$query = "SELECT * FROM submission where materialName= '$materialID'";
+          	$query = "SELECT * FROM submission, material where submission.materialNa = material.materialID AND materialName= '$materialID'";
             	$result = mysqli_query($connection, $query);
               if (mysqli_num_rows($result) > 0) {
           		while ($row = mysqli_fetch_assoc($result)){?>
