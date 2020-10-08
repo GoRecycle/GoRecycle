@@ -28,11 +28,4 @@ if(isset($_POST['insert'])){
 
   header("location: ../webpage/appointment.php");
 }
-
-
-
-
-
-
-
- ?>
+?>
