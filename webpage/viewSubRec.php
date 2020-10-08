@@ -87,6 +87,7 @@ include '../php/dbConnection.php';
       <th>Submission ID</th>
       <th>Material Name</th>
       <th>Collector Name</th>
+      <th>Recycler Name</th>
       <th>Proporsed Date</th>
       <th>Actual Date</th>
       <th>Weight in Kg</th>
@@ -94,7 +95,7 @@ include '../php/dbConnection.php';
       <th>Status </th>
     </tr>
     <?php
-    $query = "SELECT submissionID,materialName,cUserName,rUserName,proposedDate,actualDate,weightInKg,status,pointsAwarded FROM submission s, material m WHERE s.materialID=m.materialID ";
+    $query = "SELECT * FROM submission, material  WHERE submission.materialNa = material.materialID";
     $result = mysqli_query($connection, $query);
     if (mysqli_num_rows($result) > 0) {
     while ($row = mysqli_fetch_assoc($result)){?>
@@ -102,6 +103,7 @@ include '../php/dbConnection.php';
       <td><?php echo $row['submissionID']; ?></td>
       <td><?php echo $row['materialName']; ?></td>
       <td><?php echo $row['cUserName']; ?></td>
+      <td><?php echo $row['rUserName']; ?></td>
       <td><?php echo $row['proposedDate']; ?></td>
       <td><?php echo $row['actualDate']; ?></td>
       <td><?php echo $row['weightInKg']; ?></td>

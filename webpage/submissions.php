@@ -188,7 +188,7 @@ include '../php/dbConnection.php';
 			if (mysqli_num_rows($result) > 0) {
   		while ($row = mysqli_fetch_assoc($result)){?>
 			<tr>
-				<td> <a href="submissions.php?edit= <?php echo $row['materialID'];  ?>"><?php echo $row['materialID']; ?></a></td>
+				<td> <a href="submissions.php?edit= <?php echo $row['materialName'];  ?>"><?php echo $row['materialID']; ?></a></td>
 				<td><?php echo $row['materialName']; ?></td>
 				<td><?php echo $row['description']; ?></td>
 				<td><?php echo $row['pointsPerKg']; ?></td>
@@ -221,10 +221,10 @@ include '../php/dbConnection.php';
         <th>Recycler Name</th>
       </tr>
       <?php
-      $materialID = 0;
+      $materialID = '';
       if(isset($_GET['edit'])){
           $materialID = $_GET['edit'];
-          	$query = "SELECT * FROM submission where materialID= '$materialID'";
+          	$query = "SELECT * FROM submission, material where submission.materialNa = material.materialID AND materialName= '$materialID'";
             	$result = mysqli_query($connection, $query);
               if (mysqli_num_rows($result) > 0) {
           		while ($row = mysqli_fetch_assoc($result)){?>
@@ -235,7 +235,7 @@ include '../php/dbConnection.php';
         				<td><?php echo $row['weightInKg']; ?></td>
                 <td><?php echo $row['pointsAwarded']; ?></td>
                 <td><?php echo $row['status']; ?></td>
-                <td><?php echo $row['materialID']; ?></td>
+                <td><?php echo $row['materialName']; ?></td>
                 <td><?php echo $row['cUserName']; ?></td>
                 <td><?php echo $row['rUserName']; ?></td>
         			</tr>
